@@ -1,0 +1,52 @@
+<button (click)="signinWindowOpen=true" class="btn1">
+                                Sign in / Register
+                                <i class="fa fa-sign-in"></i>
+                            </button>
+<div class='overlay_shadow' *ngIf="signinWindowOpen" (click)="signinWindowToggle($event)"></div>
+<div class="signin_window" *ngIf="signinWindowOpen">
+    <section class="signin_box">
+        <div class="signin_content">
+
+            <div id="signin" *ngIf="!register">
+                <h2>Sign In</h2>
+                <p>{{message}}&nbsp;</p>
+                <form (ngSubmit)="submit(login)">
+                    <input type="text" class="form-control" name="email" 
+                    [(ngModel)]="login.email" placeholder="Your email" />
+                    <input type="password" class="form-control" id="password" name="password" 
+                    [(ngModel)]="login.password" placeholder="Password" />
+                    <button type="submit">Login</button>
+                </form>
+                <div>or</div>
+                <button (click)="googleLogin()">
+                    <i class="pull-left fa fa-google-plus"></i> Sign in with Google
+                </button>
+                <button (click)="facebookLogin()">
+                    <i class="pull-left fa fa-facebook"></i> Sign in with Facebook
+                </button>
+                <p>
+                    <a (click)="register=true">Don't have an account?</a>
+                </p>
+            </div>
+
+            <div class="register_window" *ngIf="register">
+                <h2 class="centered">Register</h2>
+                <p>{{message}}&nbsp;</p>
+                <form (ngSubmit)="submit(login)">
+                    <input type="text" id="email" 
+                        [(ngModel)]="login.email" 
+                        ngControl="email" placeholder="Your email" />
+                    <input type="password" 
+                        [(ngModel)]="login.password" 
+                        ngControl="password" placeholder="Password" />
+                    <input type="password"
+                        ngControl="passwordConfirm" placeholder="Confirm password" />
+
+                    <button type="submit">Register</button>
+                </form>
+                <a (click)="register=false">Already have an account?</a>
+            </div>
+
+        </div>
+    </section>
+</div>
